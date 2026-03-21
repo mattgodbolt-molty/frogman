@@ -46,6 +46,18 @@ NEST_CLOSE = {'NEXT', 'ENDMACRO', 'ENDIF'}
 # Directives that close then re-open (same indent as the open/close).
 NEST_TOGGLE = {'ELSE', 'ELIF'}
 
+# Top-level directives that should always be at column 0, never indented.
+# These are build/assembly-level commands, not code instructions.
+TOPLEVEL_DIRECTIVES = {
+    'ORG', 'CLEAR', 'GUARD', 'ALIGN', 'CPU',
+    'INCLUDE', 'INCBIN', 'SAVE',
+    'PUTFILE', 'PUTBASIC', 'PUTTEXT',
+    'PRINT', 'ERROR', 'COPYBLOCK',
+    'FOR', 'NEXT', 'MACRO', 'ENDMACRO',
+    'IF', 'ELIF', 'ELSE', 'ENDIF',
+    'MAPCHAR',
+}
+
 
 def expand_tabs(line, tab_size=TAB_SIZE):
     return line.expandtabs(tab_size)
@@ -239,19 +251,24 @@ def format_line(c, indent=INDENT, comment_col=COMMENT_COL, comment_style=None):
     else:
         instr_text = None
 
+    # Top-level directives at column 0 — but only when not nested
+    # inside a FOR/MACRO/IF block (where they're part of the body).
+    instr_upper = (c['instruction'] or '').upper()
+    is_toplevel = instr_upper in TOPLEVEL_DIRECTIVES and indent <= INDENT
+    effective_indent = 0 if is_toplevel else indent
+
     # Assemble line
     if c['label'] and instr_text:
         if c['has_colon_sep']:
             code = c['label']
-            # Pad label for alignment (minimum indent width)
-            pad = max(indent, len(code) + 1)
+            pad = max(effective_indent, len(code) + 1)
             code = code.ljust(pad) + ': ' + instr_text
         else:
             code = c['label']
-            pad = max(indent, len(code) + 1)
+            pad = max(effective_indent, len(code) + 1)
             code = code.ljust(pad) + instr_text
     elif instr_text:
-        code = ' ' * indent + instr_text
+        code = ' ' * effective_indent + instr_text
     elif c['label']:
         code = c['label']
     else:

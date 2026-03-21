@@ -2,7 +2,7 @@
 ; FROGMAN — Zero Page Variable Definitions
 ; ============================================================================
 
-    ORG &00
+ORG &00
 
 ; --- Pointers (used by engine for tile/screen operations) ---
 .zp_src_lo SKIP 1                       ; Source pointer low
@@ -58,7 +58,7 @@
 .zp_temp_type SKIP 1                    ; Temporary: item type being placed
 
 ; --- Engine temporaries (used during sound channel update) ---
-    ORG &60
+ORG &60
 .zp_move_ptr_lo SKIP 1                  ; Current envelope sequence pointer low
 .zp_move_ptr_hi SKIP 1                  ; Current envelope sequence pointer high
 .zp_snd_tmp_timer SKIP 1                ; Note duration temporary
@@ -66,7 +66,7 @@
 .zp_snd_tmp_speed SKIP 1                ; Volume parameter temporary
 
 ; --- Sound channel state (X-indexed, 4 channels) ---
-    ORG &70
+ORG &70
 .zp_snd_freq SKIP 4                     ; Channel frequency value
 .zp_snd_vol SKIP 4                      ; Channel volume envelope position
 .zp_snd_timer SKIP 4                    ; Channel note duration timer

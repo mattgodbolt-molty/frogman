@@ -66,8 +66,8 @@ TILE_POWER_TERM = &1F                   ; Power control terminal (final objectiv
 ; --- Tile font string macro ---
 ; The game uses tile indices for text: A=&0A..Z=&23, space=&25, *=&24.
 ; This macro temporarily remaps characters for EQUS, then resets.
-    MACRO TILESTR s
+MACRO TILESTR s
         MAPCHAR 32, &25 : MAPCHAR 42, &24 : MAPCHAR 65,90, &0A
         EQUS s
         MAPCHAR 32, 32 : MAPCHAR 42, 42 : MAPCHAR 65,90, 65
-    ENDMACRO
+ENDMACRO

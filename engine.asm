@@ -52,9 +52,9 @@
 ; The JMP at bc_done re-enters here, resetting Y each iteration.
 .bc_copy_loop
     LDY #&00                            ; Reset byte offset for each row
-    FOR n, 1, 32
+FOR n, 1, 32
         LDA (zp_src_lo),Y : STA (zp_dst_lo),Y : INY
-    NEXT
+NEXT
 
     ; Advance source by 32 bytes
     CLC

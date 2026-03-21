@@ -42,12 +42,12 @@ ORG &2800
     ; --- Initialize and start game ---
     ; Set up IRQ vector to point to &0600
     LDA #&00
-    STA &0204                   ; IRQ1V low = &00
+    STA &0204                           ; IRQ1V low = &00
     LDA #&06
-    STA &0205                   ; IRQ1V high = &06
+    STA &0205                           ; IRQ1V high = &06
 
     ; Jump to game initialization
-    JMP &09BF                   ; init_game — sets up VIA timers,
+    JMP &09BF                           ; init_game — sets up VIA timers,
                                 ; clears sprites, starts game loop
 
     ; NOTE: In a real build, this loader would use OSFILE or OSFIND

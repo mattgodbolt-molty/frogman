@@ -12,12 +12,12 @@
 ; Duplicate of engine's tile_src_lo/hi tables, used by game code's
 ; draw_tile routine for tile rendering during frog movement.
 .tile_source_lut
-    FOR n, 0, 63
+FOR n, 0, 63
         EQUB (n MOD 4) * &40
-    NEXT
-    FOR n, 0, 63
+NEXT
+FOR n, 0, 63
         EQUB tile_src_base + (n DIV 4)
-    NEXT
+NEXT
 ; Collision flags for simple tiles &00-&1F.
 ; &00 = solid (frog lands on it), &FF = passable (frog falls through).
 .collision_flags
