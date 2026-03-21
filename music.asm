@@ -58,7 +58,7 @@
     EQUB &BE, &BC, &B8, &B6
     EQUB &38, &3C, &38, &1E
     EQUB &34, &1E
-    EQUB &FE, &FF              ; End of channel 1
+    EQUB &FE, &FF                       ; End of channel 1
 
     ; Residual data — overwritten by Level?T on load.
     EQUB &DD, &07, &4F, &47
@@ -115,7 +115,7 @@
     EQUB &2A, &1E, &2A, &1E
     EQUB &A6, &AE, &B8, &BE
     EQUB &BC, &B8, &B4, &B0
-    EQUB &FE, &FF              ; End of channel 2
+    EQUB &FE, &FF                       ; End of channel 2
 
     ; Residual data — overwritten by Level?T on load
     EQUB &83, &BD, &17, &06, &4C, &E1, &D3, &F8
@@ -159,7 +159,7 @@
     EQUB &26, &3C, &18, &3C
     EQUB &12, &3C, &16, &3C
     EQUB &20, &3C, &24, &3C
-    EQUB &FE, &FF              ; End of channel 3
+    EQUB &FE, &FF                       ; End of channel 3
 
     ; Residual data — overwritten by Level?T on load
     EQUB &2E, &63, &45, &1E
